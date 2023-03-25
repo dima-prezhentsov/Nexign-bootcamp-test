@@ -40,7 +40,14 @@ public class InputOutputUtil {
                     newSubscriber.addCall(call);
                     subscribers.put(phoneNumber, newSubscriber);
                 }
-                else subscriber.addCall(call);
+                else {
+                    subscriber.addCall(call);
+                    // Проверил может ли быть у телефона несколько тарифных планов в течении выгрузки
+                    if (!subscriber.getTariffIndex().equals(tariff)) {
+                        System.out.println(subscriber.getPhoneNumber() + " " + subscriber.getTariffIndex() + " " + tariff);
+                    }
+
+                }
 
                 line = reader.readLine();
             }
